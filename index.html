@@ -432,7 +432,7 @@
     }
     @media(max-width:640px){
       .featured-grid{grid-template-columns:1fr}
-      .other-projects-grid{grid-template-columns:1fr}
+      .other-projects-grid{grid-template-columns:1fr}  
       .form-row{grid-template-columns:1fr}
       .skills-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
     }
@@ -1054,5 +1054,69 @@
     });
   }
 </script>
+<!-- ===== AUTO SUGGESTION SYSTEM ===== -->
+<div style="width:300px; margin-top:20px;">
+  <input 
+    type="text" 
+    id="messageInput" 
+    placeholder="Andika aho uri..." 
+    style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;"
+  />
+  
+  <ul 
+    id="suggestions" 
+    style="list-style:none; padding:0; margin:0; border:1px solid #ccc; border-top:none;"
+  ></ul>
+</div>
+
+<script>
+const suggestions = [
+  "Kimironko","Remera","Kacyiru","Kimisagara","Nyamirambo",
+  "Gikondo","Kanombe","Kibagabaga","Gisozi","Kagugu",
+  "Kinyinya","Nyarutarama","Kabeza","Gatenga","Kagarama",
+  "Zindiro","Rusororo","Masaka","Gahanga","Rebero",
+  "Nyakabanda","Rugando","Kimihurura","Gacuriro","Kibagabaga Gasabo",
+  "Kinyinya Gasharu","Gisozi Musezero","Remera Giporoso","Kanombe Busanza","Kigali Heights"
+];
+
+const input = document.getElementById("messageInput");
+const list = document.getElementById("suggestions");
+
+input.addEventListener("input", () => {
+  const value = input.value.toLowerCase();
+  list.innerHTML = "";
+
+  if (value === "") return;
+
+  const filtered = suggestions.filter(text =>
+    text.toLowerCase().includes(value)
+  );
+
+  filtered.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    li.style.padding = "8px";
+    li.style.cursor = "pointer";
+    li.style.background = "#fff";
+
+    li.addEventListener("mouseover", () => {
+      li.style.background = "#f0f0f0";
+    });
+
+    li.addEventListener("mouseout", () => {
+      li.style.background = "#fff";
+    });
+
+    li.addEventListener("click", () => {
+      input.value = item;
+      list.innerHTML = "";
+    });
+
+    list.appendChild(li);
+  });
+});
+</script>
+
+          
 </body>
 </html>
