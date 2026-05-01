@@ -897,19 +897,41 @@
           </iframe>
         </div>
       </div>
+<form action="https://formspree.io/f/xdabobqr" method="POST" class="contact-form">
 
-      <div class="reveal reveal-delay-2">
-        <div class="contact-form">
-          <div class="form-row">
-            <div class="fg"><label>Your Name *</label><input class="fi" id="f-name" type="text" placeholder="John Doe" required/></div>
-            <div class="fg"><label>Your Email *</label><input class="fi" id="f-email" type="email" placeholder="john@email.com" required/></div>
-          </div>
-          <div class="fg"><label>Message *</label><textarea class="ft" id="f-message" placeholder="Tell me about your project..." required></textarea></div>
-          <button class="send-btn" id="sendBtn" onclick="sendMail()">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
-          </button>
-          <div id="form-msg"></div>
-        </div>
+  <div class="form-row">
+
+    <div class="fg">
+      <label>Your Name *</label>
+      <input class="fi" type="text" name="name" placeholder="John Doe" required>
+    </div>
+
+    <div class="fg">
+      <label>Your Email *</label>
+      <input class="fi" type="email" name="email" placeholder="john@email.com" required>
+    </div>
+
+  </div>
+
+  <div class="fg">
+    <label>Message *</label>
+    <textarea class="ft" name="message" placeholder="Tell me about your project" required></textarea>
+  </div>
+
+  <!-- Optional: subject -->
+  <input type="hidden" name="_subject" value="New Contact Message">
+
+  <!-- Optional: redirect after submit -->
+  <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html"> -->
+
+  <button type="submit" class="send-btn">
+    <i class="fa-solid fa-paper-plane"></i> Send Message
+  </button>
+
+</form>
+     
+
+</form>
       </div>
     </div>
   </div>
