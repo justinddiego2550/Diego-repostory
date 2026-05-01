@@ -4,20 +4,18 @@
   <meta name="google-site-verification" content="zjKlsfitdf_n2OZC6djXPJyg04IeO61ldgaOobBVmAA" />
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> Ndayishimiye Justin Diego   </title>
+  <title>Ndayishimiye Justin Diego</title>
   <meta name="description" content="Portfolio of Ndayishimiye Justin Diego — Graphic Designer, Web Developer & Cybersecurity."/>
-  <meta name="keywords" content=" Ndayishimiye Justin Diego,, Diego Justin"/>
+  <meta name="keywords" content="Ndayishimiye Justin Diego, Diego Justin"/>
   <meta property="og:title" content="Ndayishimiye Justin Diego — Creative Developer"/>
-  <meta property="og:description" content="Graphic Design · Web Development · Cybersecurity Learner "/>
+  <meta property="og:description" content="Graphic Design · Web Development · Cybersecurity Learner"/>
   <meta property="og:type" content="website"/>
   <meta name="theme-color" content="#080b14"/>
 
-  <!-- Netlify-ready: no server-side dependencies, pure static HTML -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="file:///home/sage/Downloads/visit%20rwanda%20og.html#destinations">
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
@@ -42,8 +40,6 @@
       --nav-bg: rgba(8,11,20,0.95);
       --featured-bg: rgba(0,212,255,0.04);
       --featured-border: rgba(0,212,255,0.2);
-      --moon: '🌙';
-      --sun: '☀️';
     }
     :root[data-theme="light"] {
       --bg: #f5f7ff;
@@ -101,7 +97,6 @@
     :root[data-theme="light"] .nav-link:hover,:root[data-theme="light"] .nav-link.active{background:rgba(0,112,196,0.08)}
     .nav-right{display:flex;align-items:center;gap:12px}
 
-    /* THEME TOGGLE — sun/moon pill */
     .theme-toggle{
       display:flex;align-items:center;gap:6px;
       padding:6px 14px;border-radius:999px;
@@ -139,6 +134,9 @@
     @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
     @keyframes themeFlash{0%{opacity:.5}100%{opacity:0}}
 
+    /* ── SPINNING RING — dashed conic gradient ── */
+    @keyframes ringRotate{to{transform:rotate(360deg)}}
+
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
     .reveal.visible{opacity:1;transform:translateY(0)}
     .reveal-delay-1{transition-delay:.1s}
@@ -146,7 +144,6 @@
     .reveal-delay-3{transition-delay:.3s}
     .reveal-delay-4{transition-delay:.4s}
 
-    /* THEME TRANSITION OVERLAY */
     #theme-overlay{
       position:fixed;inset:0;z-index:9990;
       background:var(--accent1);
@@ -184,30 +181,70 @@
     .btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;background:var(--card);cursor:pointer;transition:all .25s;text-decoration:none}
     .btn-outline:hover{border-color:var(--accent1);color:var(--accent1);transform:translateY(-2px)}
 
-    /* HOME RIGHT PHOTO */
+    /* ── HOME PHOTO — NEW CLEAN RING ── */
     .home-photo-side{display:flex;flex-direction:column;align-items:center;gap:20px;animation:fadeUp .7s .35s both}
-    .photo-wrap{position:relative;width:300px;height:380px}
-    .photo-bg-shape{position:absolute;inset:-16px;border-radius:32px;background:var(--grad1);opacity:0.12;animation:float 6s ease-in-out infinite}
-    .photo-ring{position:absolute;inset:-4px;border-radius:28px;padding:3px;background:var(--grad1);animation:spin 8s linear infinite}
-    .photo-ring-inner{width:100%;height:100%;border-radius:26px;background:var(--bg)}
-    .photo-img{position:absolute;inset:4px;border-radius:24px;overflow:hidden}
+
+    .photo-wrap{
+      position:relative;
+      width:300px;height:300px;
+      display:flex;align-items:center;justify-content:center;
+    }
+
+    /* Floating glow behind everything */
+    .photo-bg-shape{
+      position:absolute;inset:-20px;
+      border-radius:50%;
+      background:var(--grad1);
+      opacity:0.10;
+      animation:float 6s ease-in-out infinite;
+      filter:blur(20px);
+    }
+
+    /* The spinning decorative ring — SVG-based dashed circle */
+    .photo-spinner{
+      position:absolute;inset:0;
+      border-radius:50%;
+      animation:ringRotate 8s linear infinite;
+    }
+    .photo-spinner svg{width:100%;height:100%}
+
+    /* Static outer border ring */
+    .photo-outer-ring{
+      position:absolute;inset:8px;
+      border-radius:50%;
+      border:1px solid var(--border);
+    }
+
+    /* The actual photo circle */
+    .photo-img{
+      position:absolute;inset:20px;
+      border-radius:50%;
+      overflow:hidden;
+      border:3px solid var(--bg);
+      box-shadow:0 8px 40px var(--shadow);
+      z-index:2;
+    }
     .photo-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
     .photo-placeholder{width:100%;height:100%;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-size:80px;opacity:.3}
-    .photo-badge{position:absolute;bottom:-16px;right:-16px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:12px 16px;text-align:center;animation:float 4s ease-in-out infinite 1s;backdrop-filter:blur(12px)}
-    .photo-badge .badge-icon{font-size:22px;margin-bottom:2px}
-    .photo-badge .badge-text{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-    .photo-badge .badge-val{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* Small floating badge */
+    .photo-badge{
+      position:absolute;bottom:-12px;right:-12px;z-index:3;
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:14px;padding:10px 14px;text-align:center;
+      animation:float 4s ease-in-out infinite 1s;
+      backdrop-filter:blur(12px);
+      box-shadow:0 8px 24px rgba(0,0,0,0.3);
+    }
+    .photo-badge .badge-icon{font-size:18px;margin-bottom:2px}
+    .photo-badge .badge-text{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+    .photo-badge .badge-val{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
     .home-socials{display:flex;gap:10px;margin-top:8px}
     .soc-link{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:15px;text-decoration:none;transition:all .2s}
     .soc-link:hover{border-color:var(--accent1);color:var(--accent1);transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
     .status-badge{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--accent4)}
     .status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent4);animation:pulse 1.5s infinite}
-
-    /* MARQUEE */
-    .marquee-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;overflow:hidden;background:var(--bg2)}
-    .marquee-track{display:flex;width:max-content;animation:marquee 20s linear infinite}
-    .marquee-item{display:flex;align-items:center;gap:8px;padding:0 28px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-    .marquee-item i{color:var(--accent1);font-size:9px}
 
     /* STATS */
     .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
@@ -226,15 +263,14 @@
 
     /* ── ABOUT ── */
     #about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%)}
-    .about-grid{display:grid;grid-template-columns:380px 1fr;gap:56px;align-items:start}
+    .about-grid{display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:start}
     .about-img-wrap{position:relative}
-    .about-img{border-radius:24px;overflow:hidden;border:1px solid var(--border);aspect-ratio:3/4;max-height:460px}
+    .about-img{border-radius:24px;overflow:hidden;border:1px solid var(--border);aspect-ratio:3/4;max-height:460px;position:relative}
     .about-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
     .about-img-placeholder{width:100%;height:100%;min-height:400px;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-size:100px;opacity:.2}
     .about-card{position:absolute;bottom:-20px;right:-20px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px 20px;backdrop-filter:blur(12px)}
     .about-card .label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
     .about-card .val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .about-card .sub{font-size:11px;color:var(--muted)}
     .about-text p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:16px}
     .about-text strong{color:var(--text)}
     .about-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
@@ -264,7 +300,6 @@
     /* ── PROJECTS ── */
     #projects{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%)}
 
-    /* FEATURED PROJECTS TOP STRIP */
     .featured-label{
       display:inline-flex;align-items:center;gap:6px;
       font-family:'JetBrains Mono',monospace;font-size:10px;
@@ -277,7 +312,6 @@
     }
     .featured-label i{font-size:8px}
 
-    /* TOP 3 FEATURED GRID */
     .featured-grid{
       display:grid;
       grid-template-columns:1fr 1fr 1fr;
@@ -300,7 +334,6 @@
     }
     .proj-card.featured:hover{border-color:var(--accent1);box-shadow:0 20px 60px var(--shadow)}
 
-    /* FEATURED STAR BADGE */
     .feat-star{
       position:absolute;top:16px;right:16px;
       width:24px;height:24px;border-radius:6px;
@@ -309,9 +342,9 @@
       font-size:12px;color:var(--accent3);
     }
     .proj-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:rgba(0,212,255,0.05);line-height:1;margin-bottom:8px}
-    .proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px}
+    .proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap}
     .proj-title{font-size:17px;font-weight:700;line-height:1.3}
-    .proj-actions{display:flex;gap:8px;flex-shrink:0;margin-top:2px}
+    .proj-actions{display:flex;gap:8px;flex-shrink:0;margin-top:6px}
     .proj-link-btn{
       display:inline-flex;align-items:center;gap:5px;
       padding:5px 10px;border-radius:7px;
@@ -321,18 +354,11 @@
       font-family:'DM Sans',sans-serif;
       white-space:nowrap;
     }
-    .proj-link-btn.view-code{
-      border-color:var(--border);color:var(--muted);background:transparent;
-    }
+    .proj-link-btn.view-code{border-color:var(--border);color:var(--muted);background:transparent}
     .proj-link-btn.view-code:hover{border-color:var(--accent1);color:var(--accent1)}
-    .proj-link-btn.live-demo{
-      border-color:var(--accent1);color:var(--accent1);
-      background:rgba(0,212,255,0.08);
-    }
+    .proj-link-btn.live-demo{border-color:var(--accent1);color:var(--accent1);background:rgba(0,212,255,0.08)}
     .proj-link-btn.live-demo:hover{background:rgba(0,212,255,0.18);transform:translateY(-1px)}
-    :root[data-theme="light"] .proj-link-btn.live-demo{
-      border-color:var(--accent1);background:rgba(0,112,196,0.08);
-    }
+    :root[data-theme="light"] .proj-link-btn.live-demo{border-color:var(--accent1);background:rgba(0,112,196,0.08)}
     :root[data-theme="light"] .proj-link-btn.live-demo:hover{background:rgba(0,112,196,0.18)}
 
     .proj-desc{font-size:13px;line-height:1.75;color:var(--muted);margin-bottom:18px;flex:1}
@@ -342,19 +368,6 @@
     .proj-type.design{background:rgba(245,158,11,0.1);color:var(--accent3);border:1px solid rgba(245,158,11,0.2)}
     .proj-type.web{background:rgba(0,212,255,0.1);color:var(--accent1);border:1px solid rgba(0,212,255,0.2)}
     .proj-type.security{background:rgba(16,185,129,0.1);color:var(--accent4);border:1px solid rgba(16,185,129,0.2)}
-
-    /* OTHER PROJECTS GRID (3 col) */
-    .other-projects-label{
-      font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
-      text-transform:uppercase;color:var(--muted);
-      margin-bottom:16px;display:flex;align-items:center;gap:8px;
-    }
-    .other-projects-label::before{content:'';width:20px;height:1px;background:var(--muted)}
-    .other-projects-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
 
     /* ── CONTACT ── */
     #contact{background:var(--bg)}
@@ -405,16 +418,14 @@
     .mn-btn i{font-size:16px}
     .mn-btn.active,.mn-btn:hover{color:var(--accent1)}
 
-    /* MOBILE MENU OVERLAY */
     #mobile-menu{display:none;position:fixed;inset:0;background:var(--bg);z-index:999;padding:80px 24px 24px;flex-direction:column;gap:8px}
     #mobile-menu.open{display:flex}
-    .mobile-nav-link{padding:14px 20px;border-radius:12px;font-size:16px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;text-align:left}
+    .mobile-nav-link{padding:14px 20px;border-radius:12px;font-size:16px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;text-align:left;text-decoration:none;display:block}
     .mobile-nav-link:hover{color:var(--accent1);background:rgba(0,212,255,0.08)}
 
     /* ── RESPONSIVE ── */
     @media(max-width:960px){
       .featured-grid{grid-template-columns:1fr 1fr}
-      .other-projects-grid{grid-template-columns:1fr 1fr}
     }
     @media(max-width:900px){
       .home-inner{grid-template-columns:1fr;text-align:center}
@@ -432,7 +443,6 @@
     }
     @media(max-width:640px){
       .featured-grid{grid-template-columns:1fr}
-      .other-projects-grid{grid-template-columns:1fr}  
       .form-row{grid-template-columns:1fr}
       .skills-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
     }
@@ -441,15 +451,12 @@
       .proj-link-btn{font-size:10px;padding:4px 8px}
     }
 
-    /* ACTIVE STATE */
     .typing-text::after{content:'|';animation:pulse 1s infinite;color:var(--accent1)}
   </style>
 </head>
 <body>
 
-<!-- Theme transition overlay -->
 <div id="theme-overlay"></div>
-
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
@@ -464,7 +471,6 @@
     <a class="nav-link" onclick="scrollToSection('contact')">Contact</a>
   </div>
   <div class="nav-right">
-    <!-- Day/Night Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle day/night mode">
       <span class="tt-icon" id="themeIcon">🌙</span>
       <span class="tt-label" id="themeLabel">Night</span>
@@ -498,7 +504,6 @@
   <div class="container">
     <div class="home-inner">
       <div class="home-left">
-     
         <h1 class="home-title">
           <span class="line1">I'm Justin</span>
           <span class="line2">Diego.</span>
@@ -509,7 +514,7 @@
           <span class="role-pill r3"><i class="fa-solid fa-shield-halved" style="margin-right:5px"></i>Cybersecurity Learner</span>
         </div>
         <p class="home-bio">
-          I'm <strong>N.Justin Diego</strong> — also known as <strong>Diego Developer</strong> — a passionate creative technologist from <strong></strong>. I design stunning visuals, build fast web experiences, and explore the world of digital security.
+          I'm <strong>N.Justin Diego</strong> — also known as <strong>Diego Developer</strong> — a passionate creative technologist from <strong>Kigali, Rwanda</strong>. I design stunning visuals, build fast web experiences, and explore the world of digital security.
         </p>
         <div class="home-cta">
           <a class="btn-primary" onclick="scrollToSection('projects')"><i class="fa-solid fa-eye"></i>View My Work</a>
@@ -535,60 +540,93 @@
         </div>
       </div>
 
+      <!-- HOME PHOTO SIDE -->
       <div class="home-photo-side">
         <div class="status-badge"><div class="status-dot"></div>Still Learning</div>
+
         <div class="photo-wrap">
+          <!-- Soft glow behind -->
           <div class="photo-bg-shape"></div>
-          <div class="photo-ring"><div class="photo-ring-inner"></div>
-          <div class="photo-img">
-          <img src="profile.png" alt="Justin Diego profile photo">
+
+          <!-- Spinning decorative ring (SVG dashed circle) -->
+          <div class="photo-spinner">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1"/>
+                  <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1"/>
+                </linearGradient>
+              </defs>
+              <circle cx="150" cy="150" r="140"
+                fill="none"
+                stroke="url(#ringGrad)"
+                stroke-width="2.5"
+                stroke-dasharray="18 10"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+            </svg>
           </div>
+
+          <!-- Static subtle outer ring -->
+          <div class="photo-outer-ring"></div>
+
+          <!-- Actual photo -->
+          <!-- ======================================================= -->
+          <!-- 📸 IMAGE 1 — Home Profile Photo (the circular hero photo) -->
+          <!-- Replace YOUR_PHOTO.jpg with your image filename          -->
+          <!-- Example: src="diego.jpg"  or  src="images/photo.png"    -->
+          <!-- ======================================================= -->
+          <div class="photo-img">
+            <img src="imagefile.jpg" alt="Justin Diego profile photo">
+          </div>
+
+          <!-- Floating badge -->
           <div class="photo-badge">
-            
             <div class="badge-text">RTSS Rwanda</div>
             <div class="badge-val">Kigali</div>
           </div>
-        
+        </div>
+
         <div class="home-socials">
-
-  <a class="soc-link" href="https://www.instagram.com/mr.di.ego" target="_blank" title="Instagram">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
-
-  <a class="soc-link" href="mailto:justindiego2550@gmail.com" title="Email">
-    <i class="fa-solid fa-envelope"></i>
-  </a>
-
-  <a class="soc-link" href="https://github.com/justindiego2550" target="_blank" title="GitHub">
-    <i class="fa-brands fa-github"></i>
-  </a>
-
-  <a class="soc-link" href="https://www.linkedin.com/in/diego-justin-b097a9400" target="_blank" title="LinkedIn">
-    <i class="fa-brands fa-linkedin"></i>
-  </a>
-
-</div>
+          <a class="soc-link" href="https://www.instagram.com/mr.di.ego" target="_blank" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a class="soc-link" href="mailto:justindiego2550@gmail.com" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a class="soc-link" href="https://github.com/justindiego2550" target="_blank" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a class="soc-link" href="https://www.linkedin.com/in/diego-justin-b097a9400" target="_blank" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </div>
       </div>
-    
- 
+    </div>
+  </div>
 </section>
-
 
 <!-- ── ABOUT ── -->
 <section id="about">
   <div class="container">
-    
+    <p class="sec-tag reveal">Who I Am</p>
     <h2 class="sec-title reveal reveal-delay-1">About <span class="accent">Me</span></h2>
     <div class="sec-line reveal reveal-delay-1"></div>
 
     <div class="about-grid">
       <div class="about-img-wrap reveal">
         <div class="about-img">
-         <img src="imagefile.jpg" alt="My photo">
-        <div class="about-card">
-          <div class="label">Based In</div>
-          <div class="val">Kigali 🇷🇼</div>
-         
+          <!-- ======================================================= -->
+          <!-- 📸 IMAGE 2 — About Section Photo (the tall portrait)    -->
+          <!-- Replace YOUR_PHOTO.jpg with your image filename          -->
+          <!-- Example: src="diego.jpg"  or  src="images/photo.png"    -->
+          <!-- ======================================================= -->
+          <img src="YOUR_PHOTO.jpg" alt="My photo">
+          <div class="about-card">
+            <div class="label">Based In</div>
+            <div class="val">Kigali 🇷🇼</div>
+          </div>
         </div>
       </div>
 
@@ -598,7 +636,7 @@
           <p>My world revolves around three pillars: <strong>Graphic Design</strong> — crafting visual stories that captivate and communicate; <strong>Web Development</strong> — engineering digital experiences that are fast, beautiful, and functional; and <strong>Cybersecurity</strong> — exploring how to build and protect systems in our connected world.</p>
           <p>I'm still growing, still learning, and loving every step of the journey. Whether it's a new design challenge, a web project, or diving into security concepts, I bring curiosity and passion to everything I do.</p>
 
-          <div class="about-info reveal-delay-3">
+          <div class="about-info">
             <div class="info-card">
               <div class="info-label">Full Name</div>
               <div class="info-val">Ndayishimiye Justin Diego</div>
@@ -607,51 +645,51 @@
               <div class="info-label">Also Known As</div>
               <div class="info-val">Diego Developer · Justin Diego</div>
             </div>
-            </div>
             <div class="info-card">
               <div class="info-label">Email</div>
-              <div class="info-val"><a href="mailto:justindiego2550@gmail.com">justindiego2550<br>@gmail.com</a></div>
+              <div class="info-val"><a href="mailto:justindiego2550@gmail.com">justindiego2550@gmail.com</a></div>
             </div>
             <div class="info-card">
               <div class="info-label">Instagram</div>
               <div class="info-val"><a href="https://www.instagram.com/mr.di.ego" target="_blank" style="color:var(--accent2)">@mr.di.ego</a></div>
             </div>
-            
             <div class="info-card" style="grid-column:span 2">
               <div class="info-label">Status</div>
               <div class="info-val" style="color:var(--accent4)">✓ Still Learning & Growing Every Day</div>
             </div>
           </div>
-        
+        </div>
+      </div>
     </div>
-  
+  </div>
 </section>
 
 <!-- ── SKILLS ── -->
 <section id="skills">
   <div class="container">
-   
+    <p class="sec-tag reveal">What I Know</p>
     <h2 class="sec-title reveal reveal-delay-1">My <span class="accent">Skills</span></h2>
     <div class="sec-line reveal reveal-delay-1"></div>
 
     <div class="skills-tabs reveal reveal-delay-2">
       <button class="stab active" onclick="filterSkills('all',this)">All Skills</button>
-      <button class="stab" onclick="filterSkills('design',this)"> Design</button>
+      <button class="stab" onclick="filterSkills('design',this)">Design</button>
       <button class="stab" onclick="filterSkills('dev',this)">Development</button>
     </div>
 
     <div class="skills-grid" id="skillsGrid">
-      <!-- DESIGN -->
+
+      <!-- DESIGN SKILLS -->
       <div class="skill-card reveal" data-cat="design">
         <div class="skill-head">
           <div class="skill-icon">🎨</div>
           <span class="skill-pct">85%</span>
-          
         </div>
         <div class="skill-name">Graphic Design</div>
         <div class="skill-desc">Visual communication & branding</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
       </div>
+
       <div class="skill-card reveal reveal-delay-1" data-cat="design">
         <div class="skill-head">
           <div class="skill-icon">✏️</div>
@@ -659,8 +697,9 @@
         </div>
         <div class="skill-name">Adobe Photoshop</div>
         <div class="skill-desc">Photo editing & manipulation</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
       </div>
+
       <div class="skill-card reveal reveal-delay-2" data-cat="design">
         <div class="skill-head">
           <div class="skill-icon">🖼️</div>
@@ -668,20 +707,30 @@
         </div>
         <div class="skill-name">Illustrator</div>
         <div class="skill-desc">Vector art & logo design</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div>
       </div>
-      
+
+      <div class="skill-card reveal reveal-delay-3" data-cat="design">
+        <div class="skill-head">
+          <div class="skill-icon">🖌️</div>
+          <span class="skill-pct">70%</span>
+        </div>
+        <div class="skill-name">Figma</div>
         <div class="skill-desc">UI/UX design & prototyping</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div>
       </div>
-      <!-- DEV -->
+
+      <!-- DEV SKILLS -->
       <div class="skill-card reveal" data-cat="dev">
         <div class="skill-head">
           <div class="skill-icon">🌐</div>
           <span class="skill-pct">80%</span>
         </div>
         <div class="skill-name">HTML & CSS</div>
-        
+        <div class="skill-desc">Markup & styling foundations</div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+      </div>
+
       <div class="skill-card reveal reveal-delay-1" data-cat="dev">
         <div class="skill-head">
           <div class="skill-icon">⚡</div>
@@ -689,15 +738,19 @@
         </div>
         <div class="skill-name">JavaScript</div>
         <div class="skill-desc">Interactive web experiences</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:65%"></div></div>
       </div>
+
       <div class="skill-card reveal reveal-delay-2" data-cat="dev">
         <div class="skill-head">
           <div class="skill-icon">📱</div>
           <span class="skill-pct">70%</span>
         </div>
         <div class="skill-name">Responsive Design</div>
-        
+        <div class="skill-desc">Mobile-first & adaptive layouts</div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div>
+      </div>
+
       <div class="skill-card reveal reveal-delay-3" data-cat="dev">
         <div class="skill-head">
           <div class="skill-icon">🔧</div>
@@ -705,8 +758,9 @@
         </div>
         <div class="skill-name">Git & Version Control</div>
         <div class="skill-desc">Code management & collaboration</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:60%"></div></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -719,45 +773,29 @@
     <div class="sec-line reveal reveal-delay-1"></div>
     <p class="sec-desc reveal reveal-delay-2">A collection of projects I've worked on — from visual design to web experiences. Always growing, always creating.</p>
 
-    <!-- TOP 3 FEATURED PROJECTS -->
     <div class="featured-label reveal">
       <i class="fa-solid fa-star"></i> Featured Projects
     </div>
+
     <div class="featured-grid">
-      <!-- FEATURED 1 -->
-     <div class="proj-actions">
 
-  
-
-</div>
-        <div class="proj-type web"><i class="fa-solid fa-globe"></i>Our Country</div>
+      <!-- FEATURED PROJECT 1 — Visit Rwanda -->
+      <div class="proj-card featured reveal">
+        <div class="feat-star"><i class="fa-solid fa-star"></i></div>
+        <div class="proj-num">01</div>
+        <div class="proj-type web"><i class="fa-solid fa-globe"></i> Our Country</div>
         <div class="proj-header">
-          <div class="proj-title">Visit Rwanda
-          </div>
-         
-<div class="proj-type web"><i class="fa-solid fa-globe"></i>Our Country</div>
-
-<div class="proj-header">
-  <div class="proj-title">Visit Rwanda</div>
-</div>
-
-<div class="proj-actions">
-
-  <a href="https://ethereal-port-44782339.base44.app/#experiences"
-     class="proj-link-btn live-demo"
-     target="_blank">
-     <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
-  </a>
-
-  <a href="https://github.com/justinddiego2550/visit-rwanda"
-     class="proj-link-btn view-code"
-     target="_blank">
-     <i class="fa-brands fa-github"></i> Code
-  </a>
-
-</div>
+          <div class="proj-title">Visit Rwanda</div>
         </div>
-        <p class="proj-desc">As a web developer, the Visit Rwanda website can be described as a modern tourism platform designed to promote travel to Rwanda while providing a smooth, engaging user experience.</p>
+        <div class="proj-actions">
+          <a href="https://ethereal-port-44782339.base44.app/#experiences" class="proj-link-btn live-demo" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+          <a href="https://github.com/justinddiego2550/visit-rwanda" class="proj-link-btn view-code" target="_blank">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        </div>
+        <p class="proj-desc">A modern tourism platform designed to promote travel to Rwanda while providing a smooth, engaging user experience. Built to showcase destinations, experiences, and the beauty of the land of a thousand hills.</p>
         <div class="proj-tags">
           <span class="ptag">HTML</span>
           <span class="ptag">CSS</span>
@@ -766,19 +804,19 @@
         </div>
       </div>
 
-      <!-- FEATURED 2 -->
+      <!-- FEATURED PROJECT 2 — Rwanda Hotels -->
       <div class="proj-card featured reveal reveal-delay-1">
         <div class="feat-star"><i class="fa-solid fa-star"></i></div>
         <div class="proj-num">02</div>
-        <div class="proj-type design"><i class="fa-solid fa-palette"></i>Enjoy Africa</div>
+        <div class="proj-type design"><i class="fa-solid fa-palette"></i> Enjoy Africa</div>
         <div class="proj-header">
-          <div class="proj-title">Rwanda Hotels look</div>
-          <div class="proj-actions">
-            <a href="#" class="proj-link-btn live-demo" target="_blank"><i class="fa-solid fa-eye"></i> View</a>
-            <a href="#" class="proj-link-btn view-code" target="_blank"><i class="fa-brands fa-behance"></i> Behance</a>
-          </div>
+          <div class="proj-title">Rwanda Hotels Look</div>
         </div>
-        <p class="proj-desc">Our platform is designed not just for booking hotels, but for creating moments of relaxation and enjoyment. Whether you’re looking for a quiet lakeside retreat, a luxury spa experience, or a cozy city escape, we make it easy to discover places where you can rest, recharge, and enjoy your journey.</p>
+        <div class="proj-actions">
+          <a href="#" class="proj-link-btn live-demo" target="_blank"><i class="fa-solid fa-eye"></i> View</a>
+          <a href="#" class="proj-link-btn view-code" target="_blank"><i class="fa-brands fa-behance"></i> Behance</a>
+        </div>
+        <p class="proj-desc">Our platform is designed not just for booking hotels, but for creating moments of relaxation and enjoyment — from quiet lakeside retreats to luxury spa experiences and cozy city escapes.</p>
         <div class="proj-tags">
           <span class="ptag">Photoshop</span>
           <span class="ptag">Illustrator</span>
@@ -787,19 +825,19 @@
         </div>
       </div>
 
-      <!-- FEATURED 3 -->
+      <!-- FEATURED PROJECT 3 — Agri World -->
       <div class="proj-card featured reveal reveal-delay-2">
         <div class="feat-star"><i class="fa-solid fa-star"></i></div>
         <div class="proj-num">03</div>
-        <div class="proj-type design"><i class="fa-solid fa-palette"></i></div>
+        <div class="proj-type design"><i class="fa-solid fa-palette"></i> UI/UX</div>
         <div class="proj-header">
           <div class="proj-title">Agri World</div>
-          <div class="proj-actions">
-            <a href="#" class="proj-link-btn live-demo" target="_blank"><i class="fa-solid fa-mobile-screen"></i> Preview</a>
-            <a href="#" class="proj-link-btn view-code" target="_blank"><i class="fa-brands fa-figma"></i> Figma</a>
-          </div>
         </div>
-        <p class="proj-desc">UI/UX design for a mobile application concept — wireframes, user flow diagrams, and a polished high-fidelity prototype in Figma with full component library.</p>
+        <div class="proj-actions">
+          <a href="#" class="proj-link-btn live-demo" target="_blank"><i class="fa-solid fa-mobile-screen"></i> Preview</a>
+          <a href="#" class="proj-link-btn view-code" target="_blank"><i class="fa-brands fa-figma"></i> Figma</a>
+        </div>
+        <p class="proj-desc">UI/UX design for a mobile application concept — wireframes, user flow diagrams, and a polished high-fidelity prototype in Figma with a full component library for an agricultural platform.</p>
         <div class="proj-tags">
           <span class="ptag">Figma</span>
           <span class="ptag">UI/UX</span>
@@ -807,22 +845,15 @@
           <span class="ptag">Mobile</span>
         </div>
       </div>
-    </div>
 
-   
-
-     
-
-      <!-- PROJECT 6 -->
-     
-      </div>
     </div>
   </div>
 </section>
 
 <!-- ── CONTACT ── -->
 <section id="contact">
-    <p class="sec-tag reveal"></p>
+  <div class="container">
+    <p class="sec-tag reveal">Get In Touch</p>
     <h2 class="sec-title reveal reveal-delay-1">Let's <span class="accent">Connect</span></h2>
     <div class="sec-line reveal reveal-delay-1"></div>
 
@@ -852,7 +883,10 @@
           <a class="ci" href="#">
             <div class="ci-icon" style="background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);color:var(--accent4)"><i class="fa-solid fa-map-pin"></i></div>
             <div>
-              
+              <div class="ci-label">Location</div>
+              <div class="ci-val">Kigali, Rwanda 🇷🇼</div>
+            </div>
+          </a>
         </div>
 
         <div class="map-wrap reveal reveal-delay-2">
@@ -870,7 +904,6 @@
             <div class="fg"><label>Your Name *</label><input class="fi" id="f-name" type="text" placeholder="John Doe" required/></div>
             <div class="fg"><label>Your Email *</label><input class="fi" id="f-email" type="email" placeholder="john@email.com" required/></div>
           </div>
-         
           <div class="fg"><label>Message *</label><textarea class="ft" id="f-message" placeholder="Tell me about your project..." required></textarea></div>
           <button class="send-btn" id="sendBtn" onclick="sendMail()">
             <i class="fa-solid fa-paper-plane"></i> Send Message
@@ -888,7 +921,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-copy">© 2026 <span>Ndayishimiye Justin Diego</span> · All rights reserved · Kigali, Rwanda </div>
+      <div class="footer-copy">© 2026 <span>Ndayishimiye Justin Diego</span> · All rights reserved · Kigali, Rwanda</div>
       <div class="footer-links">
         <a class="footer-link" onclick="scrollToSection('home')"><i class="fa-solid fa-house" style="margin-right:4px"></i>Home</a>
         <a class="footer-link" onclick="scrollToSection('about')"><i class="fa-solid fa-user" style="margin-right:4px"></i>About</a>
@@ -926,9 +959,9 @@
     el.addEventListener('mouseleave', () => { cur.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='32px';ring.style.height='32px'; });
   });
 
-  // ── THEME: DAY / NIGHT ──
+  // ── THEME ──
   const html = document.documentElement;
-  let isDark = true; // starts dark (night)
+  let isDark = true;
 
   function syncThemeUI() {
     const icon = isDark ? '🌙' : '☀️';
@@ -943,20 +976,15 @@
   }
 
   function toggleTheme() {
-    // Flash overlay for smooth feel
     const overlay = document.getElementById('theme-overlay');
     overlay.classList.add('flash');
     setTimeout(() => overlay.classList.remove('flash'), 300);
-
     isDark = !isDark;
     html.setAttribute('data-theme', isDark ? 'dark' : 'light');
-
-    // Persist across page refreshes
     localStorage.setItem('diego-theme', isDark ? 'dark' : 'light');
     syncThemeUI();
   }
 
-  // Load saved preference on start
   (function() {
     const saved = localStorage.getItem('diego-theme');
     if (saved === 'light') {
@@ -966,7 +994,7 @@
     syncThemeUI();
   })();
 
-  // ── SMOOTH SCROLL (SPA-style, no page reload) ──
+  // ── SMOOTH SCROLL ──
   function scrollToSection(id) {
     const el = document.getElementById(id);
     if(el) el.scrollIntoView({behavior:'smooth'});
@@ -983,7 +1011,6 @@
     document.getElementById('mobile-menu').classList.remove('open');
   }
 
-  // ── MOBILE NAV ACTIVE ──
   function setActiveBtn(btn) {
     document.querySelectorAll('.mn-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -1000,7 +1027,7 @@
     entries.forEach(e => {
       if(e.isIntersecting) {
         const fills = e.target.querySelectorAll('.skill-fill');
-        fills.forEach(f => { f.style.width = getComputedStyle(f).getPropertyValue('--w'); });
+        fills.forEach(f => { f.style.width = f.style.getPropertyValue('--w') || getComputedStyle(f).getPropertyValue('--w'); });
       }
     });
   }, {threshold: 0.3});
@@ -1033,7 +1060,6 @@
   function sendMail() {
     const name = document.getElementById('f-name').value.trim();
     const email = document.getElementById('f-email').value.trim();
-    const subject = document.getElementById('f-subject').value.trim();
     const message = document.getElementById('f-message').value.trim();
     const btn = document.getElementById('sendBtn');
     const msg = document.getElementById('form-msg');
@@ -1041,12 +1067,12 @@
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent='⚠ Invalid email address.';msg.className='err';return;}
     btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';msg.textContent='';
     emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',{
-      from_name:name,from_email:email,subject:subject,message:message,
+      from_name:name,from_email:email,message:message,
       to_email:'ndayishimiyejustindiego@gmail.com'
     }).then(()=>{
       btn.innerHTML='<i class="fa-solid fa-check"></i> Message Sent!';
       msg.textContent='✅ Message sent! Diego will reply within 24 hours.';msg.className='ok';
-      ['f-name','f-email','f-subject','f-message'].forEach(id=>document.getElementById(id).value='');
+      ['f-name','f-email','f-message'].forEach(id=>document.getElementById(id).value='');
       setTimeout(()=>{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Message';},4000);
     }).catch(()=>{
       btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Message';
@@ -1054,69 +1080,6 @@
     });
   }
 </script>
-<!-- ===== AUTO SUGGESTION SYSTEM ===== -->
-<div style="width:300px; margin-top:20px;">
-  <input 
-    type="text" 
-    id="messageInput" 
-    placeholder="Andika aho uri..." 
-    style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;"
-  />
-  
-  <ul 
-    id="suggestions" 
-    style="list-style:none; padding:0; margin:0; border:1px solid #ccc; border-top:none;"
-  ></ul>
-</div>
 
-<script>
-const suggestions = [
-  "Kimironko","Remera","Kacyiru","Kimisagara","Nyamirambo",
-  "Gikondo","Kanombe","Kibagabaga","Gisozi","Kagugu",
-  "Kinyinya","Nyarutarama","Kabeza","Gatenga","Kagarama",
-  "Zindiro","Rusororo","Masaka","Gahanga","Rebero",
-  "Nyakabanda","Rugando","Kimihurura","Gacuriro","Kibagabaga Gasabo",
-  "Kinyinya Gasharu","Gisozi Musezero","Remera Giporoso","Kanombe Busanza","Kigali Heights"
-];
-
-const input = document.getElementById("messageInput");
-const list = document.getElementById("suggestions");
-
-input.addEventListener("input", () => {
-  const value = input.value.toLowerCase();
-  list.innerHTML = "";
-
-  if (value === "") return;
-
-  const filtered = suggestions.filter(text =>
-    text.toLowerCase().includes(value)
-  );
-
-  filtered.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    li.style.padding = "8px";
-    li.style.cursor = "pointer";
-    li.style.background = "#fff";
-
-    li.addEventListener("mouseover", () => {
-      li.style.background = "#f0f0f0";
-    });
-
-    li.addEventListener("mouseout", () => {
-      li.style.background = "#fff";
-    });
-
-    li.addEventListener("click", () => {
-      input.value = item;
-      list.innerHTML = "";
-    });
-
-    list.appendChild(li);
-  });
-});
-</script>
-
-          
 </body>
 </html>
